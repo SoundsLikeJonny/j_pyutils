@@ -13,6 +13,7 @@ from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
 import pathlib
+import getpass
 
 
 class SendEmail():
@@ -24,7 +25,7 @@ class SendEmail():
     **kwargs: 
     ==========
     from_email : str    the senders email (must be from the same SMTP server) 
-    password : str      your password (2-factor authentication requires an app password)
+    password : str      your password, as a getpass call (2-factor authentication requires an app password)
     to_email : str      the addressees email
     subject : str       subject of the email
     message_body : str  body of the email
@@ -38,7 +39,7 @@ class SendEmail():
     def __init__(self, **kwargs):
 
         self.from_email = kwargs.get('from_email', '')
-        self.password = kwargs.get('password', '')
+        self.password = kwargs.get('password', getpass.getpass(prompt='Enter your email password and press enter: '))
         self.to_email = kwargs.get('to_email', self.from_email)
         self.subject = kwargs.get('subject', '')
         self.message_body = kwargs.get('message_body', '')
