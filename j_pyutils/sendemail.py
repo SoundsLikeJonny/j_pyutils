@@ -79,7 +79,7 @@ class SendEmail():
             smtp.starttls()
             smtp.login(self.from_email, self.password)
             smtp.send_message(self.mime_message)
-            print('\n\nMessage "' + str(self.subject) + '" sent to ' + str(self.to_email))
+            print(f'\n\nMessage "{str(self.subject)}" sent to {str(self.to_email)}\n\n')
         finally:
             del smtp
     
@@ -91,14 +91,18 @@ class SendEmail():
         """
         if file_path is not None:
             
-            file = open(str(pathlib.Path(__file__).parent.absolute()) + "/" + file_path, 'rb')
-            
+            try:
+                file = open(f'{str(pathlib.Path(__file__).parent.absolute())}/{file_path}', 'rb')
+            except:
+                print(f'Error with file: {file_path}\nTry moving the file to the same directory as the Python file')
+                return None
+
             mime_base_obj = MIMEBase('application', 'octet-stream')
             mime_base_obj.set_payload((file).read())
             
             encoders.encode_base64(mime_base_obj)
 
-            mime_base_obj.add_header('Content-Disposition', 'attachment; filename=' + file_path)
+            mime_base_obj.add_header('Content-Disposition', f'attachment; filename={file_path}')
             self.mime_message.attach(mime_base_obj)
                 
         return None
