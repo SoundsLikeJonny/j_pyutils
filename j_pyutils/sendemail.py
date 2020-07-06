@@ -38,12 +38,12 @@ class SendEmail():
     
     def __init__(self, **kwargs):
 
-        self.from_email = kwargs.get('from_email', '')
-        self.password = kwargs.get('password', getpass.getpass(prompt='Enter your email password and press enter: '))
-        self.to_email = kwargs.get('to_email', self.from_email)
-        self.subject = kwargs.get('subject', '')
+        self.from_email   = kwargs.get('from_email', '')
+        self.password     = kwargs.get('password', getpass.getpass(prompt='Enter your email password and press enter: '))
+        self.to_email     = kwargs.get('to_email', self.from_email)
+        self.subject      = kwargs.get('subject', '')
         self.message_body = kwargs.get('message_body', '')
-        self.attachment = kwargs.get('attachment', None)
+        self.attachment   = kwargs.get('attachment', None)
         
         self.smtp_host = kwargs.get('smtp_host', 'smtp.gmail.com')
         self.smtp_port = kwargs.get('smtp_port', 587)
