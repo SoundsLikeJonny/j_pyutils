@@ -1,8 +1,10 @@
+#! /usr/bin/python3.8
+
 """
 # File        : webscrape.py
 # Author      : Jon Evans
-# Last Updated: July 6, 2020
-# https       : //github.com/SoundsLikeJonny
+# Last Updated: July 9, 2020
+# GitHub      : https://github.com/SoundsLikeJonny
 #
 # This document is a part of the j_pyutils module.
 #
@@ -57,9 +59,15 @@ class WebScrape():
 
     
     def get(self, url: str, **kwargs) -> requests.Response: 
+        """Calls requests.get with given arguments
+
+        Args:
+            url (str): the url of the website
+
+        Returns:
+            requests.Response: HTTP response from the get request
         """
-        Calls requests.get with given arguments
-        """
+
         if self.url != None:
             return requests.get(url, **kwargs)
         else: 
@@ -68,28 +76,42 @@ class WebScrape():
 
 
     def post(self, url: str, **kwargs) -> requests.Response: 
-        """ 
-        Calls requests.post with given arguments
+        """Calls requests.post with given arguments
+
+        Args:
+            url (str): the url of the website
+
+        Returns:
+            requests.Response: HTTP response from the post request
         """
         return requests.post(url,**kwargs)
 
 
     def compile(self, pattern: r'', **kwargs) -> re._compile: 
-        """
-        Calls re.compile passing the pattern and any other kwargs
+        """Calls re.compile passing the pattern and any other kwargs
+
+        Args:
+            pattern (r): the regex pattern as a raw string 
+
+        Returns:
+            re._compile: re.compile object with the pattern
         """
         return re.compile(pattern, **kwargs)
         
 
     def findall(self) -> list: 
-        """
-        Calls re.findall passing the pattern and text from a webpage
+        """Calls 
+        re.findall passing the pattern and text from a webpage
+
+        Returns:
+            list: [description]
         """
         self.page = self.get(self.url, headers=self.headers)
 
         if self.page is not None: 
             self.page = self.page.text
 
+        # Check to see if members were initialized, then get regex groups
         if self.regex_pattern != None and self.page != None:
             return re.findall(self.regex_pattern, self.page)
         else: 
@@ -97,8 +119,10 @@ class WebScrape():
             return None
 
 
-    def sleep(self, timeout: int) -> None: 
+    def sleep(self, wait_time: int) -> None: 
+        """Calls time.sleep passing the desired time to sleep
+
+        Args:
+            wait_time (int): time in seconds
         """
-        Calls time.sleep passing the desired time to sleep
-        """
-        time.sleep(timeout)
+        time.sleep(wait_time)
