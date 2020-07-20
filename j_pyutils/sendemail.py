@@ -8,7 +8,7 @@
 #
 # This document is a part of the j_pyutils module.
 #
-# SendEmail encapsulates the popular email.mime and smtplib functions into a single class for easy emailing
+# SendEmail wraps the popular email.mime and smtplib functions into a single class for easy emailing
 """
 
 import smtplib
