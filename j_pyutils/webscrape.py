@@ -8,7 +8,7 @@
 #
 # This document is a part of the j_pyutils module.
 #
-# WebScrape encapsulates the popular functions of requests, re and time into a single class to simplify web scraping
+# WebScrape wraps the popular functions of requests, re and time into a single class to simplify web scraping
 """
 
 import re
